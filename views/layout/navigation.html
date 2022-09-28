@@ -34,9 +34,11 @@
 							>Home</a
 						>
 					</li>
+					{{if .sessionData.IsLogin}}
 					<li class="nav-item">
 						<a class="nav-link" href="/form-add-project">Add Project</a>
 					</li>
+					{{end}}
 				</ul>
 				<div class="d-flex gap-5">
 					<div class="nav-auth d-flex gap-3">
@@ -49,7 +51,7 @@
 						</form>
 						{{else}}
 						<form action="/form-register" method="GET">
-							<button class="btn button-line">Logout</button>
+							<button class="btn btn-outline-danger">Logout</button>
 						</form>
 						{{end}}
 					</div>
