@@ -76,9 +76,19 @@
 								<a class="nav-link" href="/form-add-project">Add Project</a>
 							</li>
 						</ul>
-						<form class="d-flex" action="/contact-me">
-							<button class="btn button-fill">Contact</button>
-						</form>
+						<div class="d-flex gap-5">
+							<div class="nav-auth d-flex gap-3">
+								<form action="/form-login" method="GET">
+									<button class="btn button-fill">Login</button>
+								</form>
+								<form action="/form-register" method="GET">
+									<button class="btn button-line">Register</button>
+								</form>
+							</div>
+							<form class="d-flex" action="/contact-me">
+								<button class="btn button-fill">Contact</button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</nav>

@@ -1,0 +1,33 @@
+{{template "layout" .}} {{define "content"}}
+<!-- content -->
+<section
+	class="form-container d-flex flex-column align-items-center justify-content-center"
+>
+	<h1>Login</h1>
+	<p id="error-message"></p>
+	<form action="/auth/login" method="POST">
+		<div class="form-floating mb-3">
+			<input
+				type="email"
+				name="email"
+				class="form-control shadow"
+				id="floatingInput"
+				placeholder="name@example.com"
+			/>
+			<label for="floatingInput">Email</label>
+		</div>
+		<div class="form-floating mb-3">
+			<input
+				type="password"
+				name="password"
+				class="form-control shadow"
+				id="floatingInput"
+				placeholder="name@example.com"
+			/>
+			<label for="floatingInput">Password</label>
+		</div>
+
+		<button class="btn float-end button-fill">Register</button>
+	</form>
+</section>
+{{end}}

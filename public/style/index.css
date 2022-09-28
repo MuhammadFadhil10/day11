@@ -92,7 +92,7 @@ nav {
 	background-color: #e78a91 !important;
 }
 
-/* .button-line {
+.button-line {
 	color: #292929 !important;
 	font-weight: bolder;
 	background: none !important;
@@ -101,7 +101,7 @@ nav {
 .button-line:hover {
 	color: #dbdddf !important;
 	background-color: #f06e79 !important;
-} */
+}
 
 .nav-link {
 	color: #f06e79 !important;
