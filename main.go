@@ -30,10 +30,14 @@ func main() {
 	// get auth
 	router.HandleFunc("/form-register", controller.GetRegisterForm).Methods("GET")
 	router.HandleFunc("/form-login", controller.GetLoginForm).Methods("GET")
-	// post
+	// post project
 	router.HandleFunc("/add-project", controller.PostAddProject).Methods("POST")
 	router.HandleFunc("/update-project/{index}", controller.UpdateProject).Methods("POST")
 	router.HandleFunc("/delete-project/{projectId}", controller.DeleteProject).Methods("POST")
+	// post auth
+	router.HandleFunc("/auth/register", controller.Register).Methods("POST")
+	router.HandleFunc("/auth/login", controller.Login).Methods("POST")
+	
 	
 	connection.DatabaseConnect(func() {
 		fmt.Println("running on port 5000");
