@@ -1,0 +1,94 @@
+{{define "layout"}}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="static/style/project.css" />
+		<link rel="stylesheet" href="static/style/index.css" />
+		<link rel="stylesheet" href="/static/style/contact.css" />
+		<!-- favicon -->
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="static/assets/favicon/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="static/assets/favicon/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="static/assets/favicon/favicon-16x16.png"
+		/>
+		<link rel="manifest" href="/site.webmanifest" />
+		<title>Personal Card</title>
+	</head>
+	<body>
+		<header>
+			<nav
+				class="navbar navbar-expand-lg bg-light position-fixed w-100 p-0 shadow-lg"
+			>
+				<div class="container-xl">
+					<a class="navbar-brand" href="/">
+						<img
+							src="/static/assets/image/logo.png"
+							alt="logo"
+							height="40px"
+							width="40px"
+						/>
+					</a>
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent"
+						aria-expanded="false"
+						aria-label="Toggle navigation"
+					>
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item h-100">
+								<a
+									class="nav-link active h-100"
+									aria-current="page"
+									href="/"
+									style="color: #75070e !important"
+									>Home</a
+								>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/form-add-project">Add Project</a>
+							</li>
+						</ul>
+						<form class="d-flex" action="/contact-me">
+							<button class="btn button-fill">Contact</button>
+						</form>
+					</div>
+				</div>
+			</nav>
+		</header>
+		{{ template "content" .}}
+	</body>
+	<!-- bootstrap js -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+		crossorigin="anonymous"
+	></script>
+</html>
+{{end}}

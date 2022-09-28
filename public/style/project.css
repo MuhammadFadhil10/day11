@@ -1,9 +1,9 @@
 section form {
 	width: 45%;
 }
-section form button {
-	background-color: #f06e79 !important;
-	color: #dddbdb !important;
+.project-submit {
+	background-color: #f06e79;
+	color: #dddbdb;
 }
 form div {
 	width: 100%;

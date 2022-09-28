@@ -6,7 +6,7 @@ import (
 )
 
 func GetContactMe(w http.ResponseWriter, r *http.Request) {
-	var view, err = template.ParseFiles("views/contact.html")	
+	var view, err = template.ParseFiles("views/contact.html", "views/layout/layout.html")	
 	if err != nil {
 		panic(err.Error())
 	}

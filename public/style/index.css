@@ -71,34 +71,37 @@ nav {
 	height: 25px;
 	/* background-color: gray; */
 }
-/* .project-card .action {
-	 background-color: rgb(15, 146, 135); 
-} */
-.project-card .action button {
+.project-card .action {
+	width: 100% !important;
+}
+.project-card form {
 	width: auto;
-	font-size: 1rem;
+}
+.project-card .action button {
+	width: auto !important;
+	font-size: 1rem !important;
 }
 
 .button-fill {
-	font-weight: bolder;
-	background-color: #f06e79;
-	color: white;
+	font-weight: bolder !important;
+	background-color: #f06e79 !important;
+	color: white !important;
 }
 .button-fill:hover {
 	/* color: #383535 !important; */
 	background-color: #e78a91 !important;
 }
 
-.button-line {
-	color: #292929;
+/* .button-line {
+	color: #292929 !important;
 	font-weight: bolder;
-	background: none;
-	border: 2px solid #f06e79;
+	background: none !important;
+	border: 2px solid #f06e79 !important;
 }
 .button-line:hover {
 	color: #dbdddf !important;
 	background-color: #f06e79 !important;
-}
+} */
 
 .nav-link {
 	color: #f06e79 !important;

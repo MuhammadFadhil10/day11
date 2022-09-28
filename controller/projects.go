@@ -29,17 +29,18 @@ func GetHome(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		panic(err.Error())
 	}
+	
 
 	var dataResult []ProjectData
 
 	for data.Next() {
 		var project = ProjectData{}
 
-		var err = data.Scan(&project.Id,&project.Name, &project.StartDate, &project.EndDate, &project.Description, &project.Technologies, &project.Image)
+		var err = data.Scan(&project.Id,&project.Name, &project.StartDate, &project.EndDate, &project.Description, &project.Technologies, &project.Image);
 		if err != nil {
-			fmt.Println(err.Error())
-			return
+			panic(err.Error())
 		}
+		
 		project.Duration = helper.GetDuration(project.StartDate.Format("2006-01-02"), project.EndDate.Format("2006-01-02"))
 		project.Description = helper.CutString(project.Description, 30)
 		project.Name = helper.CutString(project.Name, 20)
@@ -49,15 +50,17 @@ func GetHome(w http.ResponseWriter, r *http.Request) {
 
 	
 	
-	var view, templErr = template.ParseFiles("views/index.html")	
-	if err != nil {
-		panic(templErr.Error())
-	}
+	var view, templErr = template.ParseFiles("views/index.html", "views/layout/layout.html");
+	if templErr != nil {
+		fmt.Println(templErr.Error())
+		return
+	}	
+	
 	view.Execute(w, dataResult)
 }
 
 func GetAddProject(w http.ResponseWriter, r *http.Request) {
-	var view, err = template.ParseFiles("views/project.html")	
+	var view, err = template.ParseFiles("views/project.html", "views/layout/layout.html")	
 	if err != nil {
 		panic(err.Error())
 	}
@@ -112,7 +115,7 @@ func GetEditProject(w http.ResponseWriter, r *http.Request) {
 		project.StringEndDate = project.EndDate.Format("2006-01-02")
 	} 
 	
-	var view, viewErr = template.ParseFiles("views/edit-project.html")
+	var view, viewErr = template.ParseFiles("views/edit-project.html", "views/layout/layout.html")
 
 	if viewErr != nil {
 		panic(viewErr.Error())
@@ -183,7 +186,7 @@ func GetProjectDetail(w http.ResponseWriter, r *http.Request) {
 		project.StringEndDate = project.EndDate.Format("January 02, 2006")
 	}
 
-	var view,viewErr = template.ParseFiles("views/projectDetail.html")
+	var view,viewErr = template.ParseFiles("views/projectDetail.html", "views/layout/layout.html")
 	if viewErr != nil {
 		panic(viewErr.Error())
 	}
