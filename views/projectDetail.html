@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="/static/style/index.css" />
+		<link rel="stylesheet" href="/static/style/projectDetail.css" />
+		<!-- favicon -->
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/static/assets/favicon/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="/static/assets/favicon/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/static/assets/favicon/favicon-16x16.png"
+		/>
+		<link rel="manifest" href="/site.webmanifest" />
+		<title>{{.Name}}</title>
+	</head>
+	<body>
+		<header>
+			<nav
+				class="navbar navbar-expand-lg bg-light position-fixed w-100 shadow-lg"
+			>
+				<div class="container-xl">
+					<a class="navbar-brand" href="/">
+						<img
+							src="/static/assets/image/logo.png"
+							alt="logo"
+							height="40px"
+							width="40px"
+						/>
+					</a>
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent"
+						aria-expanded="false"
+						aria-label="Toggle navigation"
+					>
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="/">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/form-add-project">My Project</a>
+							</li>
+						</ul>
+						<form class="d-flex" action="/contact-me">
+							<button class="btn button-fill">Contact</button>
+						</form>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<section
+			class="main-container container-xl w-75 d-flex flex-column gap-5 align-items-center justify-content-center"
+		>
+			<h1 class="project-title text-dark fs-4 fw-bold align-self-start">
+				{{.Name}}
+			</h1>
+			<div class="project-header d-flex gap-5 mb-5">
+				<img
+					src="{{.Image}}"
+					alt=""
+					class="project-thumbnail rounded"
+					width="60%"
+					height="100%"
+				/>
+				<div class="project-info w-75">
+					<div class="top d-flex flex-column">
+						<h2>Duration</h2>
+						<ul class="list-style d-flex flex-column gap-3">
+							<li class="list-group-item date-range-detail d-flex gap-2 h-50">
+								<img
+									src="/static/assets/icon/calendar.png"
+									alt="calendar-icon"
+									width="25px"
+								/>
+								{{.StringStartDate}} - {{.StringEndDate}}
+							</li>
+							<li class="list-group-item duration-detail d-flex gap-2">
+								<img
+									src="/static/assets/icon/clock.png"
+									alt="clock-icon"
+									width="25px"
+								/>{{.Duration}}
+							</li>
+						</ul>
+					</div>
+					<div class="bottom">
+						<h2>Technologies</h2>
+
+						<ul class="list-style tech-list d-flex flex-column gap-3">
+							{{range $tech := .Technologies}}
+							<li class="list-group-item react-list d-flex gap-2">
+								<img
+									src="/static/assets/icon/{{$tech}}.png"
+									alt="{{$tech}}-icon"
+									width="25px"
+								/>
+								{{$tech}}
+							</li>
+							{{end}}
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="project-body align-self-start fs-5">
+				<p>{{.Description}}</p>
+			</div>
+		</section>
+	</body>
+</html>

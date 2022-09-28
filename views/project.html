@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="/static/style/project.css" />
+		<link rel="stylesheet" href="/static/style/index.css" />
+
+		<!-- favicon -->
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/static/assets/favicon/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="/static/assets/favicon/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/static/assets/favicon/favicon-16x16.png"
+		/>
+		<link rel="manifest" href="/site.webmanifest" />
+		<title>Add Project</title>
+	</head>
+	<body>
+		<header>
+			<nav
+				class="navbar navbar-expand-lg p-0 bg-light position-fixed w-100 shadow"
+			>
+				<div class="container-xl">
+					<a class="navbar-brand" href="/">
+						<img
+							src="/static/assets/image/logo.png"
+							alt="logo"
+							height="40px"
+							width="40px"
+						/>
+					</a>
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarSupportedContent"
+						aria-controls="navbarSupportedContent"
+						aria-expanded="false"
+						aria-label="Toggle navigation"
+					>
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="/">Home</a>
+							</li>
+							<li class="nav-item">
+								<a
+									class="nav-link"
+									href="/form-add-project"
+									style="color: #75070e !important"
+									>Add Project</a
+								>
+							</li>
+						</ul>
+						<form class="d-flex" action="/contact-me">
+							<button class="btn button-fill">Contact</button>
+						</form>
+					</div>
+				</div>
+			</nav>
+		</header>
+		<!-- content -->
+		<section
+			class="form-container d-flex flex-column align-items-center justify-content-center"
+		>
+			<h1>ADD MY PROJECT</h1>
+			<p id="error-message"></p>
+			<form action="/add-project" method="POST">
+				<div class="form-floating mb-3">
+					<input
+						type="text"
+						name="name"
+						class="form-control shadow"
+						id="floatingInput"
+						placeholder="name@example.com"
+					/>
+					<label for="floatingInput">Project Name</label>
+				</div>
+				<div class="input-group mb-3 shadow">
+					<span class="input-group-text">Start and End Date</span>
+					<input
+						type="date"
+						name="start-date"
+						aria-label="First name"
+						class="form-control"
+					/>
+					<input
+						type="date"
+						name="end-date"
+						aria-label="Last name"
+						class="form-control"
+					/>
+				</div>
+				<div class="form-floating mb-3">
+					<textarea
+						class="form-control shadow"
+						name="description"
+						placeholder="Leave a comment here"
+						id="floatingTextarea"
+					></textarea>
+					<label for="floatingTextarea">Description</label>
+				</div>
+				<!-- CHECKBOX -->
+				<div class="chekbox d-flex gap-5 mb-3">
+					<div class="form-check form-check-inline">
+						<input
+							class="form-check-input shadow"
+							type="checkbox"
+							id="inlineCheckbox1"
+							value="nodejs"
+							name="checkbox"
+						/>
+						<label class="form-check-label" for="inlineCheckbox1"
+							>Node JS</label
+						>
+					</div>
+					<div class="form-check form-check-inline">
+						<input
+							class="form-check-input shadow"
+							type="checkbox"
+							id="inlineCheckbox2"
+							value="reactjs"
+							name="checkbox"
+						/>
+						<label class="form-check-label" for="inlineCheckbox2"
+							>React JS</label
+						>
+					</div>
+					<div class="form-check form-check-inline">
+						<input
+							class="form-check-input shadow"
+							type="checkbox"
+							id="inlineCheckbox2"
+							value="nextjs"
+							name="checkbox"
+						/>
+						<label class="form-check-label" for="inlineCheckbox2"
+							>Next JS</label
+						>
+					</div>
+					<div class="form-check form-check-inline">
+						<input
+							class="form-check-input shadow"
+							type="checkbox"
+							id="inlineCheckbox2"
+							value="typescript"
+							name="checkbox"
+						/>
+						<label class="form-check-label" for="inlineCheckbox2"
+							>Typescript</label
+						>
+					</div>
+				</div>
+				<!-- IMAGE -->
+				<div class="mb-3">
+					<input class="form-control shadow" type="file" id="formFile" />
+				</div>
+				<button class="btn float-end">Submit</button>
+			</form>
+		</section>
+	</body>
+	<script src="/js/project.js"></script>
+</html>

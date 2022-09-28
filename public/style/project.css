@@ -1,0 +1,18 @@
+section form {
+	width: 45%;
+}
+section form button {
+	background-color: #f06e79 !important;
+	color: #dddbdb !important;
+}
+form div {
+	width: 100%;
+}
+
+.form-control {
+	width: 100%;
+}
+.form-container {
+	background-color: #dddbdb;
+	height: 110vh;
+}
