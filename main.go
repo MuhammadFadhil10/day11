@@ -46,6 +46,18 @@ func main() {
 
 }
 
+// func getNavigation(w http.ResponseWriter, r *http.Request) {
+// 	view, viewErr := template.ParseFiles("views/layout/navigation.html")
+// 	if viewErr != nil {
+// 		fmt.Println(viewErr)
+// 	}
+
+// 	store := sessions.NewCookieStore([]byte("MY_SESSION_KEY"))
+// 	session, _ := store.Get(r, "MY_SESSION_KEY")
+
+// 	view.Execute(w,session)
+// }
+
 
 
 

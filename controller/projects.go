@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/gorilla/sessions"
 )
 
 type ProjectData struct {
@@ -20,16 +21,19 @@ type ProjectData struct {
 	Technologies[]string	
 }
 
+type SessionStruct struct {
+	Email,Name string
+	IsLogin bool
+}
+
 
 func GetHome(w http.ResponseWriter, r *http.Request) {
-
 	data, err := connection.Conn.Query(context.Background(), "SELECT id,name,start_date,end_date,description,technologies,image FROM public.tb_projects ORDER BY posted_at DESC")
 
 	if err != nil {
 		fmt.Println(err)
 		panic(err.Error())
 	}
-	
 
 	var dataResult []ProjectData
 
@@ -48,24 +52,60 @@ func GetHome(w http.ResponseWriter, r *http.Request) {
 		dataResult = append(dataResult, project)
 	}
 
-	
-	
-	var view, templErr = template.ParseFiles("views/index.html", "views/layout/layout.html");
+	var view, templErr = template.ParseFiles("views/index.html", "views/layout/navigation.html");
 	if templErr != nil {
 		fmt.Println(templErr.Error())
 		return
 	}	
+	store := sessions.NewCookieStore([]byte("MY_SESSION_KEY"))
+	session, _ := store.Get(r,"MY_SESSION_KEY");
+	if session.Values["IsLogin"] == nil {
+		session.Values["IsLogin"] = false
+	} 
+	if session.Values["Name"] == nil {
+		session.Values["Name"] = ""
+	} 
+	if session.Values["Email"] == nil{
+		session.Values["Email"] = ""
+	}
+	sessionData := SessionStruct{
+		Name: session.Values["Name"].(string),
+		Email: session.Values["Email"].(string),
+		IsLogin: session.Values["IsLogin"].(bool),
+	}
+	responseData := map[string]interface{} {
+		"blogData": dataResult,
+		"sessionData": sessionData,
+	}
 	
-	view.Execute(w, dataResult)
+	view.Execute(w, responseData)
 }
 
 func GetAddProject(w http.ResponseWriter, r *http.Request) {
-	var view, err = template.ParseFiles("views/project.html", "views/layout/layout.html")	
+	var view, err = template.ParseFiles("views/project.html", "views/layout/navigation.html")	
 	if err != nil {
 		panic(err.Error())
 	}
-
-	view.Execute(w, nil)
+	store := sessions.NewCookieStore([]byte("MY_SESSION_KEY"))
+	session, _ := store.Get(r,"MY_SESSION_KEY");
+	if session.Values["IsLogin"] == nil {
+		session.Values["IsLogin"] = false
+	} 
+	if session.Values["Name"] == nil {
+		session.Values["Name"] = ""
+	} 
+	if session.Values["Email"] == nil{
+		session.Values["Email"] = ""
+	}
+	sessionData := SessionStruct{
+		Name: session.Values["Name"].(string),
+		Email: session.Values["Email"].(string),
+		IsLogin: session.Values["IsLogin"].(bool),
+	}
+	responseData := map[string]interface{} {
+		"sessionData": sessionData,
+	}
+	view.Execute(w, responseData)
 }
 
 func PostAddProject(w http.ResponseWriter, r *http.Request) {
@@ -115,13 +155,33 @@ func GetEditProject(w http.ResponseWriter, r *http.Request) {
 		project.StringEndDate = project.EndDate.Format("2006-01-02")
 	} 
 	
-	var view, viewErr = template.ParseFiles("views/edit-project.html", "views/layout/layout.html")
+	var view, viewErr = template.ParseFiles("views/edit-project.html", "views/layout/navigation.html")
 
 	if viewErr != nil {
 		panic(viewErr.Error())
 	}
 	
-	view.Execute(w, project)
+	store := sessions.NewCookieStore([]byte("MY_SESSION_KEY"))
+	session, _ := store.Get(r,"MY_SESSION_KEY");
+	if session.Values["IsLogin"] == nil {
+		session.Values["IsLogin"] = false
+	} 
+	if session.Values["Name"] == nil {
+		session.Values["Name"] = ""
+	} 
+	if session.Values["Email"] == nil{
+		session.Values["Email"] = ""
+	}
+	sessionData := SessionStruct{
+		Name: session.Values["Name"].(string),
+		Email: session.Values["Email"].(string),
+		IsLogin: session.Values["IsLogin"].(bool),
+	}
+	responseData := map[string]interface{} {
+		"project": project,
+		"sessionData": sessionData,
+	}
+	view.Execute(w, responseData)
 }
 
 func UpdateProject(w http.ResponseWriter, r *http.Request) {
@@ -186,11 +246,31 @@ func GetProjectDetail(w http.ResponseWriter, r *http.Request) {
 		project.StringEndDate = project.EndDate.Format("January 02, 2006")
 	}
 
-	var view,viewErr = template.ParseFiles("views/projectDetail.html", "views/layout/layout.html")
+	var view,viewErr = template.ParseFiles("views/projectDetail.html", "views/layout/navigation.html")
 	if viewErr != nil {
 		panic(viewErr.Error())
 	}
-	view.Execute(w, project)
+	store := sessions.NewCookieStore([]byte("MY_SESSION_KEY"))
+	session, _ := store.Get(r,"MY_SESSION_KEY");
+	if session.Values["IsLogin"] == nil {
+		session.Values["IsLogin"] = false
+	} 
+	if session.Values["Name"] == nil {
+		session.Values["Name"] = ""
+	} 
+	if session.Values["Email"] == nil{
+		session.Values["Email"] = ""
+	}
+	sessionData := SessionStruct{
+		Name: session.Values["Name"].(string),
+		Email: session.Values["Email"].(string),
+		IsLogin: session.Values["IsLogin"].(bool),
+	}
+	responseData := map[string]interface{} {
+		"project": project,
+		"sessionData": sessionData,
+	}
+	view.Execute(w, responseData)
 
 }
 

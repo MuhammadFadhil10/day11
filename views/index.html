@@ -1,150 +1,197 @@
-{{ template "layout" . }} {{ define "content" }}
-<div class="profile-container container-xxl d-flex align-items-center">
-	<section
-		class="info-container bg-light rounded shadow container-xl d-flex gap-2 align-items-center justify-content-evenly"
-	>
-		<div class="info-left d-flex flex-column gap-2">
-			<div class="summary">
-				<h1>Hello buddy</h1>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium
-					tempore vitae dolore iusto autem nisi quo alias quibusdam delectus,
-					nemo corporis iste illo quos incidunt dolor deserunt? Enim nemo minima
-					dolores similique tenetur adipisci vel ea velit qui fugit, nesciunt
-					reiciendis sequi et natus quod harum fugiat in quos ut.
-				</p>
-			</div>
-			<div class="action d-flex flex-column gap-5">
-				<div class="button-container d-flex gap-2">
-					<button class="contact-button rounded-pill btn button-fill">
-						Contact
-					</button>
-					<button class="download-button rounded-pill btn button-line d-flex">
-						Download CV
-						<img
-							src="static/assets/icon/download.svg"
-							alt=""
-							class="icon"
-							height="20px"
-							width="20px"
-						/>
-					</button>
-				</div>
-				<div class="media-social w-100">
-					<ul class="w-100 d-flex justify-content-start p-0 gap-4">
-						<li class="media-social-icon-list">
-							<a href="https://www.linkedin.com" target="_blank"
-								><img
-									src="static/assets/icon/linkedin-pink.svg"
-									height="30px"
-									width="30px"
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="static/style/index.css" />
+		<!-- favicon -->
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="static/assets/favicon/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="static/assets/favicon/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="static/assets/favicon/favicon-16x16.png"
+		/>
+		<link rel="manifest" href="/site.webmanifest" />
+		<title>Personal Card</title>
+	</head>
+	<body>
+		{{template "navigation" .}}
+		<div class="profile-container container-xxl d-flex align-items-center">
+			<section
+				class="info-container bg-light rounded shadow container-xl d-flex gap-2 align-items-center justify-content-evenly"
+			>
+				<div class="info-left d-flex flex-column gap-2">
+					<div class="summary">
+						<h1>Hello buddy</h1>
+
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit.
+							Praesentium tempore vitae dolore iusto autem nisi quo alias
+							quibusdam delectus, nemo corporis iste illo quos incidunt dolor
+							deserunt? Enim nemo minima dolores similique tenetur adipisci vel
+							ea velit qui fugit, nesciunt reiciendis sequi et natus quod harum
+							fugiat in quos ut.
+						</p>
+					</div>
+					<div class="action d-flex flex-column gap-5">
+						<div class="button-container d-flex gap-2">
+							<button class="contact-button rounded-pill btn button-fill">
+								Contact
+							</button>
+							<button
+								class="download-button rounded-pill btn button-line d-flex"
+							>
+								Download CV
+								<img
+									src="static/assets/icon/download.svg"
 									alt=""
-							/></a>
-						</li>
-						<li class="media-social-icon-list">
-							<img
-								src="static/assets/icon/instagram-pink.svg"
-								height="30px"
-								width="30px"
-								alt=""
-							/>
-						</li>
-						<li class="media-social-icon-list">
-							<img
-								src="static/assets/icon/facebook-pink.svg"
-								height="30px"
-								width="30px"
-								alt=""
-							/>
-						</li>
-						<li class="media-social-icon-list">
-							<img
-								src="static/assets/icon/twitter-pink.svg"
-								height="30px"
-								width="30px"
-								alt=""
-							/>
-						</li>
-					</ul>
+									class="icon"
+									height="20px"
+									width="20px"
+								/>
+							</button>
+						</div>
+						<div class="media-social w-100">
+							<ul class="w-100 d-flex justify-content-start p-0 gap-4">
+								<li class="media-social-icon-list">
+									<a href="https://www.linkedin.com" target="_blank"
+										><img
+											src="static/assets/icon/linkedin-pink.svg"
+											height="30px"
+											width="30px"
+											alt=""
+									/></a>
+								</li>
+								<li class="media-social-icon-list">
+									<img
+										src="static/assets/icon/instagram-pink.svg"
+										height="30px"
+										width="30px"
+										alt=""
+									/>
+								</li>
+								<li class="media-social-icon-list">
+									<img
+										src="static/assets/icon/facebook-pink.svg"
+										height="30px"
+										width="30px"
+										alt=""
+									/>
+								</li>
+								<li class="media-social-icon-list">
+									<img
+										src="static/assets/icon/twitter-pink.svg"
+										height="30px"
+										width="30px"
+										alt=""
+									/>
+								</li>
+							</ul>
+						</div>
+					</div>
 				</div>
-			</div>
+
+				<div
+					class="card rounded p-2 shadow image-card info-right d-flex flex-column align-items-center"
+				>
+					<img
+						src="static/assets/image/character-2.webp"
+						alt="profile photo"
+						class="profile-photo rounded"
+						title="Professor-Acorn - tap to go to image source page"
+						height="100%"
+						width="100%"
+					/>
+
+					<div class="card-detail">
+						<h2>John Doe</h2>
+						<h5 class="text-muted">Programmer</h5>
+					</div>
+				</div>
+			</section>
 		</div>
+		<!-- content -->
 
-		<div
-			class="card rounded p-2 shadow image-card info-right d-flex flex-column align-items-center"
+		<!-- bloglist -->
+		<section
+			class="container-xl mt-5 d-flex flex-column align-items-center p-5 blog-list-container"
 		>
-			<img
-				src="static/assets/image/character-2.webp"
-				alt="profile photo"
-				class="profile-photo rounded"
-				title="Professor-Acorn - tap to go to image source page"
-				height="100%"
-				width="100%"
-			/>
-
-			<div class="card-detail">
-				<h2>John Doe</h2>
-				<h5 class="text-muted">Programmer</h5>
-			</div>
-		</div>
-	</section>
-</div>
-<!-- content -->
-
-<!-- bloglist -->
-<section
-	class="container-xl mt-5 d-flex flex-column align-items-center p-5 blog-list-container"
->
-	<h2>MY PROJECT</h2>
-	<div
-		class="project-card-container d-flex flex-wrap gap-5 w-100"
-		id="blog-container"
-	>
-		{{range $index, $data := . }}
-		<div
-			class="card project-card shadow gap-1 d-flex flex-column justify-content-around"
-		>
-			<img src="{{$data.Image}}" alt="thumbnail" />
-			<div class="title d-flex flex-column justify-content-start">
-				<h1 class="fs-4">{{$data.Name}}</h1>
-				<p class="text-muted duration">Duration: {{$data.Duration}}</p>
-			</div>
-			<div class="body fs-6">
-				<p>{{$data.Description}}</p>
-			</div>
-			<div class="icon-list d-flex gap-3">
-				{{range $tech := $data.Technologies}}
-				<img
-					src="static/assets/icon/{{$tech}}.png"
-					width="25px"
-					height="25px"
-				/>
+			<h2>MY PROJECT</h2>
+			<div
+				class="project-card-container d-flex flex-wrap gap-5 w-100"
+				id="blog-container"
+			>
+				{{range $index, $data := .blogData }}
+				<div
+					class="card project-card shadow gap-1 d-flex flex-column justify-content-around"
+				>
+					<img src="{{$data.Image}}" alt="thumbnail" />
+					<div class="title d-flex flex-column justify-content-start">
+						<h1 class="fs-4">{{$data.Name}}</h1>
+						<p class="text-muted duration">Duration: {{$data.Duration}}</p>
+					</div>
+					<div class="body fs-6">
+						<p>{{$data.Description}}</p>
+					</div>
+					<div class="icon-list d-flex gap-3">
+						{{range $tech := $data.Technologies}}
+						<img
+							src="static/assets/icon/{{$tech}}.png"
+							width="25px"
+							height="25px"
+						/>
+						{{end}}
+					</div>
+					<div class="action d-flex align-self-center justify-content-evenly">
+						<form
+							action="/project/{{$data.Id}}"
+							method="GET"
+							class="d-flex justify-content-center align-items-center"
+						>
+							<button class="btn button-fill">Project detail</button>
+						</form>
+						<form
+							action="/form-edit-project/{{$data.Id}}"
+							method="GET"
+							class="d-flex justify-content-center align-items-center"
+						>
+							<button class="btn button-fill">Edit</button>
+						</form>
+						<form
+							action="/delete-project/{{$data.Id}}"
+							method="POST"
+							class="d-flex justify-content-center align-items-center"
+						>
+							<button class="btn btn-outline-danger">Delete</button>
+						</form>
+					</div>
+				</div>
 				{{end}}
 			</div>
-			<div class="action d-flex align-self-center justify-content-evenly">
-				<form
-					action="/project/{{$data.Id}}"
-					method="GET"
-					class="d-flex justify-content-center align-items-center"
-				>
-					<button class="btn button-fill">Project detail</button>
-				</form>
-				<form
-					action="/form-edit-project/{{$data.Id}}"
-					method="GET"
-					class="d-flex justify-content-center align-items-center"
-				>
-					<button class="btn button-fill">Edit</button>
-				</form>
-				<form
-					action="/delete-project/{{$data.Id}}"
-					method="POST"
-					class="d-flex justify-content-center align-items-center"
-				>
-					<button class="btn btn-outline-danger">Delete</button>
-				</form>
-			</div>
-		</div>
-	</div>
-</section>
-{{end}} {{end}}
+		</section>
+	</body>
+	<!-- bootstrap js -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+		crossorigin="anonymous"
+	></script>
+</html>

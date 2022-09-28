@@ -1,59 +1,102 @@
-{{ template "layout" . }} {{ define "content" }}
-<section
-	class="main-container container-xl w-75 d-flex flex-column gap-5 align-items-center justify-content-center"
->
-	<h1 class="project-title text-dark fs-4 fw-bold align-self-start">
-		{{.Name}}
-	</h1>
-	<div class="project-header d-flex gap-5 mb-5">
-		<img
-			src="{{.Image}}"
-			alt=""
-			class="project-thumbnail rounded"
-			width="60%"
-			height="100%"
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+			crossorigin="anonymous"
 		/>
-		<div class="project-info w-75">
-			<div class="top d-flex flex-column">
-				<h2>Duration</h2>
-				<ul class="list-style d-flex flex-column gap-3">
-					<li class="list-group-item date-range-detail d-flex gap-2 h-50">
-						<img
-							src="/static/assets/icon/calendar.png"
-							alt="calendar-icon"
-							width="25px"
-						/>
-						{{.StringStartDate}} - {{.StringEndDate}}
-					</li>
-					<li class="list-group-item duration-detail d-flex gap-2">
-						<img
-							src="/static/assets/icon/clock.png"
-							alt="clock-icon"
-							width="25px"
-						/>{{.Duration}}
-					</li>
-				</ul>
-			</div>
-			<div class="bottom">
-				<h2>Technologies</h2>
+		<link rel="stylesheet" href="/static/style/index.css" />
+		<link rel="stylesheet" href="/static/style/projectDetail.css" />
+		<!-- favicon -->
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/static/assets/favicon/apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="/static/assets/favicon/favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="/static/assets/favicon/favicon-16x16.png"
+		/>
+		<link rel="manifest" href="/site.webmanifest" />
+		<title>Personal Card</title>
+	</head>
+	<body>
+		{{template "navigation" .}}
+		<section
+			class="main-container container-xl w-75 d-flex flex-column gap-5 align-items-center justify-content-center"
+		>
+			<h1 class="project-title text-dark fs-4 fw-bold align-self-start">
+				{{.project.Name}}
+			</h1>
+			<div class="project-header d-flex gap-5 mb-5">
+				<img
+					src="{{.project.Image}}"
+					alt=""
+					class="project-thumbnail rounded"
+					width="60%"
+					height="100%"
+				/>
+				<div class="project-info w-75">
+					<div class="top d-flex flex-column">
+						<h2>Duration</h2>
+						<ul class="list-style d-flex flex-column gap-3">
+							<li class="list-group-item date-range-detail d-flex gap-2 h-50">
+								<img
+									src="/static/assets/icon/calendar.png"
+									alt="calendar-icon"
+									width="25px"
+								/>
+								{{.project.StringStartDate}} - {{.project.StringEndDate}}
+							</li>
+							<li class="list-group-item duration-detail d-flex gap-2">
+								<img
+									src="/static/assets/icon/clock.project.png"
+									alt="clock-icon"
+									width="25px"
+								/>{{.project.Duration}}
+							</li>
+						</ul>
+					</div>
+					<div class="bottom">
+						<h2>Technologies</h2>
 
-				<ul class="list-style tech-list d-flex flex-column gap-3">
-					{{range $tech := .Technologies}}
-					<li class="list-group-item react-list d-flex gap-2">
-						<img
-							src="/static/assets/icon/{{$tech}}.png"
-							alt="{{$tech}}-icon"
-							width="25px"
-						/>
-						{{$tech}}
-					</li>
-					{{end}}
-				</ul>
+						<ul class="list-style tech-list d-flex flex-column gap-3">
+							{{range $tech := .project.Technologies}}
+							<li class="list-group-item react-list d-flex gap-2">
+								<img
+									src="/static/assets/icon/{{$tech}}.png"
+									alt="{{$tech}}-icon"
+									width="25px"
+								/>
+								{{$tech}}
+							</li>
+							{{end}}
+						</ul>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<div class="project-body align-self-start fs-5">
-		<p>{{.Description}}</p>
-	</div>
-</section>
-{{end}}
+			<div class="project-body align-self-start fs-5">
+				<p>{{.project.Description}}</p>
+			</div>
+		</section>
+	</body>
+	<!-- bootstrap js -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+		crossorigin="anonymous"
+	></script>
+</html>

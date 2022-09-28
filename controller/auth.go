@@ -7,15 +7,16 @@ import (
 	"mvcweb/connection"
 	"net/http"
 
+	"github.com/gorilla/sessions"
 	"golang.org/x/crypto/bcrypt"
 )
 
 type User struct {
-	Name, password string
+	Name, Email, password string
 }
 
 func GetRegisterForm(w http.ResponseWriter, r *http.Request) {
-	view, viewErr := template.ParseFiles("views/register.html", "views/layout/layout.html")
+	view, viewErr := template.ParseFiles("views/register.html", "views/layout/navigation.html")
 
 	if viewErr != nil {
 		fmt.Println(viewErr.Error())
@@ -25,7 +26,7 @@ func GetRegisterForm(w http.ResponseWriter, r *http.Request) {
 
 }
 func GetLoginForm(w http.ResponseWriter, r *http.Request) {
-	view, viewErr := template.ParseFiles("views/login.html", "views/layout/layout.html")
+	view, viewErr := template.ParseFiles("views/login.html", "views/layout/navigation.html")
 
 	if viewErr != nil {
 		fmt.Println(viewErr.Error())
@@ -69,29 +70,52 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	password := r.PostForm.Get("password");
 
 	queryString := `
-		SELECT email,password FROM public.tb_user WHERE email = $1
+		SELECT email,name,password FROM public.tb_user WHERE email = $1
 	`
 
 	data, dataErr := connection.Conn.Query(context.Background(),queryString,email)
 
 	if dataErr != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		w.Write([]byte("message:" + dataErr.Error()))
 		fmt.Println(dataErr.Error())
 	}
 
 	var user = User{}
 	for data.Next() {
-		scanErr := data.Scan(&user.Name, &user.password);
+		scanErr := data.Scan(&user.Email, &user.Name,&user.password);
 		if scanErr != nil {
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write([]byte("message:" + scanErr.Error()))
 			fmt.Println(scanErr)
 		}
 	}
+	fmt.Println(user)
 
 	passwordMatch := bcrypt.CompareHashAndPassword([]byte(user.password), []byte(password))
 
 	if passwordMatch != nil {
+		w.WriteHeader(http.StatusBadRequest)
 		http.Redirect(w,r,"/form-login", 301)
-	} else {
-		http.Redirect(w,r,"/",301)
+		w.Write([]byte("Wrong password!, " + passwordMatch.Error()));
+		return;
 	}
+
+	store := sessions.NewCookieStore([]byte("MY_SESSION_KEY"))
+
+	session, _ := store.Get(r, "MY_SESSION_KEY")
+
+	session.Values["Email"] = user.Email;
+	session.Values["Name"] = user.Name;
+	session.Values["IsLogin"] = true;
+	session.Options.MaxAge = 7200;
+
+	session.AddFlash("Login succesfully!", "login message")
+
+	session.Save(r,w)
+
+
+	http.Redirect(w,r,"/", http.StatusMovedPermanently)
+	
 
 }

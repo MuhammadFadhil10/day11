@@ -1,0 +1,64 @@
+{{define "navigation"}}
+<header>
+	<nav
+		class="navbar navbar-expand-lg bg-light position-fixed w-100 p-0 shadow-lg"
+	>
+		<div class="container-xl">
+			<a class="navbar-brand" href="/">
+				<img
+					src="/static/assets/image/logo.png"
+					alt="logo"
+					height="40px"
+					width="40px"
+				/>
+			</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent"
+				aria-expanded="false"
+				aria-label="Toggle navigation"
+			>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<li class="nav-item h-100">
+						<a
+							class="nav-link active h-100"
+							aria-current="page"
+							href="/"
+							style="color: #75070e !important"
+							>Home</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/form-add-project">Add Project</a>
+					</li>
+				</ul>
+				<div class="d-flex gap-5">
+					<div class="nav-auth d-flex gap-3">
+						{{if not .sessionData.IsLogin}}
+						<form action="/form-login" method="GET">
+							<button class="btn button-fill">Login</button>
+						</form>
+						<form action="/form-register" method="GET">
+							<button class="btn button-line">Register</button>
+						</form>
+						{{else}}
+						<form action="/form-register" method="GET">
+							<button class="btn button-line">Logout</button>
+						</form>
+						{{end}}
+					</div>
+					<form class="d-flex" action="/contact-me">
+						<button class="btn button-fill rounded-pill">Contact</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</nav>
+</header>
+{{end}}

@@ -4,3 +4,12 @@
 body {
 	background-color: #dbdddf;
 }
+
+.submit-button {
+	font-weight: bolder !important;
+	background-color: #f06e79 !important;
+	color: white !important;
+}
+.submit-button:hover {
+	background-color: #e78a91 !important;
+}
