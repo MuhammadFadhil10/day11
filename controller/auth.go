@@ -90,7 +90,6 @@ func Login(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(scanErr)
 		}
 	}
-	fmt.Println(user)
 
 	passwordMatch := bcrypt.CompareHashAndPassword([]byte(user.password), []byte(password))
 
@@ -102,7 +101,6 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	store := sessions.NewCookieStore([]byte("MY_SESSION_KEY"))
-
 	session, _ := store.Get(r, "MY_SESSION_KEY")
 
 	session.Values["Email"] = user.Email;
@@ -113,9 +111,18 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	session.AddFlash("Login succesfully!", "login message")
 
 	session.Save(r,w)
-
-
-	http.Redirect(w,r,"/", http.StatusMovedPermanently)
 	
 
+	http.Redirect(w,r,"/", http.StatusMovedPermanently)
+}
+
+func Logout(w http.ResponseWriter, r *http.Request) {
+	store := sessions.NewCookieStore([]byte("MY_SESSION_KEY"))
+	session, _ := store.Get(r, "MY_SESSION_KEY")
+	session.Options.MaxAge = -1;
+	err := session.Save(r,w)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	http.Redirect(w,r,"/", http.StatusTemporaryRedirect)
 }

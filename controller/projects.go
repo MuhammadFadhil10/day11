@@ -8,6 +8,7 @@ import (
 	"mvcweb/helper"
 	"net/http"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/gorilla/mux"
@@ -22,7 +23,7 @@ type ProjectData struct {
 }
 
 type SessionStruct struct {
-	Email,Name string
+	Email,Name,Flash string
 	IsLogin bool
 }
 
@@ -68,16 +69,30 @@ func GetHome(w http.ResponseWriter, r *http.Request) {
 	if session.Values["Email"] == nil{
 		session.Values["Email"] = ""
 	}
+	
+
+	flashMessage := session.Flashes("login message")
+
+	var flashArr []string
+
+	if len(flashMessage) > 0 {
+		session.Save(r,w)
+		for _, f := range flashMessage {
+			flashArr = append(flashArr, f.(string))
+		}
+		fmt.Println(flashArr)
+	}
+	
 	sessionData := SessionStruct{
 		Name: session.Values["Name"].(string),
 		Email: session.Values["Email"].(string),
 		IsLogin: session.Values["IsLogin"].(bool),
 	}
+	sessionData.Flash = strings.Join(flashArr,"")
 	responseData := map[string]interface{} {
 		"blogData": dataResult,
 		"sessionData": sessionData,
 	}
-	
 	view.Execute(w, responseData)
 }
 

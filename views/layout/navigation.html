@@ -50,9 +50,10 @@
 							<button class="btn button-line">Register</button>
 						</form>
 						{{else}}
-						<form action="/form-register" method="GET">
+						<a href="/auth/logout">
 							<button class="btn btn-outline-danger">Logout</button>
-						</form>
+						</a>
+
 						{{end}}
 					</div>
 					<form class="d-flex" action="/contact-me">

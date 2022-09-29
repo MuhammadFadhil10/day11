@@ -37,6 +37,7 @@ func main() {
 	// post auth
 	router.HandleFunc("/auth/register", controller.Register).Methods("POST")
 	router.HandleFunc("/auth/login", controller.Login).Methods("POST")
+	router.HandleFunc("/auth/logout", controller.Logout).Methods("GET")
 	
 	
 	connection.DatabaseConnect(func() {
@@ -46,17 +47,6 @@ func main() {
 
 }
 
-// func getNavigation(w http.ResponseWriter, r *http.Request) {
-// 	view, viewErr := template.ParseFiles("views/layout/navigation.html")
-// 	if viewErr != nil {
-// 		fmt.Println(viewErr)
-// 	}
-
-// 	store := sessions.NewCookieStore([]byte("MY_SESSION_KEY"))
-// 	session, _ := store.Get(r, "MY_SESSION_KEY")
-
-// 	view.Execute(w,session)
-// }
 
 
 

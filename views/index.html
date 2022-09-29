@@ -34,7 +34,12 @@
 	</head>
 	<body>
 		{{template "navigation" .}}
-		<div class="profile-container container-xxl d-flex align-items-center">
+		<div
+			class="profile-container container-xxl d-flex flex-column align-items-center justify-content-center"
+		>
+			{{if .sessionData.Flash}}
+			<div class="alert alert-success" role="alert">{{.sessionData.Flash}}</div>
+			{{end}}
 			<section
 				class="info-container bg-light rounded shadow container-xl d-flex gap-2 align-items-center justify-content-evenly"
 			>
